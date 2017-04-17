@@ -14,36 +14,18 @@ import org.jfree.ui.RefineryUtilities;
 /**
  * Created by patriknygren on 2017-04-16.
  */
-public class Ex_1_4_3 extends ApplicationFrame {
-
-    public Ex_1_4_3(String title, XYSeries series) {
-        super(title);
-        final XYSeriesCollection data = new XYSeriesCollection(series);
-        final JFreeChart chart = ChartFactory.createXYLineChart(
-                "Running time for ThreeSum",
-                "N",
-                "Time",
-                data,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);
-    }
+public class Ex_1_4_3 {
 
     public static void main(String[] args) { // Print table of running times.
-        final XYSeries series = new XYSeries("plot");
+        final XYSeries series = new XYSeries("threesum");
         for (int N = 250; N < 2000; N += N) {
             double time = timeTrial(N);
             series.add(N, time);
         }
-        ApplicationFrame demo = new Ex_1_4_3("Running time", series);
-        demo.pack();
-        demo.setVisible(true);
-        RefineryUtilities.centerFrameOnScreen(demo);
+        ApplicationFrame diagram = new Frame("Running time", series);
+        diagram.pack();
+        diagram.setVisible(true);
+        RefineryUtilities.centerFrameOnScreen(diagram);
     }
 
     // Time ThreeSum.count() for N random 6-digit ints.
@@ -57,5 +39,25 @@ public class Ex_1_4_3 extends ApplicationFrame {
         return timer.elapsedTime();
     }
 
+    static class Frame extends ApplicationFrame {
+
+        public Frame(String title, XYSeries series) {
+            super(title);
+            final XYSeriesCollection data = new XYSeriesCollection(series);
+            final JFreeChart chart = ChartFactory.createXYLineChart(
+                    "Running time for ThreeSum",
+                    "N",
+                    "Time",
+                    data,
+                    PlotOrientation.VERTICAL,
+                    true,
+                    true,
+                    false
+            );
+            final ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+            setContentPane(chartPanel);
+        }
+    }
 
 }
