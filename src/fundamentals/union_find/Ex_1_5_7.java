@@ -83,34 +83,4 @@ public class Ex_1_5_7 {
         }
     }
 
-    static abstract class UFBase implements UF {
-        protected final int[] id;
-        protected int count;
-
-        UFBase(int N) {
-            id = new int[N];
-            for(int i = 0; i< id.length; i++) {
-                id[i] = i;
-            }
-            count = N;
-        }
-
-        @Override
-        public boolean connected(int p, int q) {
-            return find(p) == find(q);
-        }
-
-        @Override
-        public int count() {
-            return count;
-        }
-    }
-
-    // API
-    interface UF {
-        void union(int p, int q);           // add connection between p and q
-        int find(int p);                    // component identifier for p (0 to N-1)
-        boolean connected(int p, int q);    // return true if p and q are in the same component
-        int count();                        // number of id
-    }
 }
