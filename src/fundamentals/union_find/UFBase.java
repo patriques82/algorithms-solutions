@@ -3,7 +3,7 @@ package fundamentals.union_find;
 /**
  * Created by patriknygren on 2017-04-22.
  */
-public abstract class UFBase implements UF {
+abstract class UFBase implements UF {
     protected final int[] id;
     protected int count;
 

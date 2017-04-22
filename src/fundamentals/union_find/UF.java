@@ -5,7 +5,7 @@ package fundamentals.union_find;
  */
 // API
 
-public interface UF {
+interface UF {
 
     void union(int p, int q);           // add connection between p and q
 
