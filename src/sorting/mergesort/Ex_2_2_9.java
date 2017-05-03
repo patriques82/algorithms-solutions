@@ -37,7 +37,7 @@ public class Ex_2_2_9 {
             int i = lo;
             int j = mid+1;
             for (int k = lo; k <= hi; k++) {
-                if (i > mid)                      a[k] = aux[j++];
+                if (i > mid)                    a[k] = aux[j++];
                 else if (j > hi)                a[k] = aux[i++];
                 else if (less(aux[i], aux[j]))  a[k] = aux[i++];
                 else                            a[k] = aux[j++];
