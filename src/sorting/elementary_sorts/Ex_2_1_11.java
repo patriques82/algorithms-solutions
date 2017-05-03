@@ -11,11 +11,11 @@ public class Ex_2_1_11 {
 
     public static void main(String[] args) {
         Integer[] array = {0, 9, 2, 7, 6, 4, 3, 8, 1, 5, 11, 12, 14, 18, 16, 17, 19, 10, 13, 15};
-        ShellSort.sort(array, ShellSort.incrementSeq(array.length));
+        Shell.sort(array, Shell.incrementSeq(array.length));
         Arrays.stream(array).forEach(x -> StdOut.print(x + " "));
     }
 
-    public static class ShellSort {
+    public static class Shell {
 
         static int[] incrementSeq(int size) {
             int[] seq = new int[(int) (Math.log(size)/Math.log(3))];
