@@ -23,7 +23,7 @@ public class LinkedList<E> {
 
     public LinkedList(E el, E ... elems) {
         Node<E> curr = null;
-        Node<E> prev = null;
+        Node<E> prev;
         first = new Node<>(el);
         if(elems.length == 0) {
             last = first;
