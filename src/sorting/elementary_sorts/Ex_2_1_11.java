@@ -5,7 +5,8 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by patriknygren on 2017-04-26.
+ * Implement a version of shellsort that keeps the increment sequence in an array,
+ * rather than computing it.
  */
 public class Ex_2_1_11 {
 
@@ -34,14 +35,14 @@ public class Ex_2_1_11 {
             for (int h : incrementSeq) {
                 for (int i = 0; i < N; i++) {
                     for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
-                        exch(a, j - h, j);
+                        swap(a, j - h, j);
                     }
                 }
                 // h /= 3;
             }
         }
 
-        private static void exch(Comparable[] a, int x, int y) {
+        private static void swap(Comparable[] a, int x, int y) {
             Comparable temp = a[x];
             a[x] = a[y];
             a[y] = temp;
