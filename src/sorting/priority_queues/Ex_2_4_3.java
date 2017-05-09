@@ -7,7 +7,10 @@ import fundamentals.bags_queues_and_stacks.Node;
 import java.util.Arrays;
 
 /**
- * Created by patriknygren on 2017-05-06.
+ * Provide priority-queue implementations that support insert and remove the
+ * maximum, one for each of the following underlying data structures: unordered array,
+ * ordered array, unordered linked list, and linked list. Give a table of the worst-case
+ * bounds for each operation for each of your four implementations.
  */
 public class Ex_2_4_3 {
 
