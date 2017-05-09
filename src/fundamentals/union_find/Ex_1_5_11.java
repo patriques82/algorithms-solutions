@@ -3,7 +3,9 @@ package fundamentals.union_find;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-22.
+ * Implement weighted quick-find, where you always change the id[] entries of
+ * the smaller component to the identifier of the larger component. How does this change
+ * affect performance?
  */
 public class Ex_1_5_11 {
 

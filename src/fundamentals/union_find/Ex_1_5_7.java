@@ -3,7 +3,8 @@ package fundamentals.union_find;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-21.
+ * Develop classes QuickUnionUF and QuickFindUF that implement quick-union
+ * and quick-find, respectively.
  */
 public class Ex_1_5_7 {
 

@@ -3,7 +3,9 @@ package fundamentals.bags_queues_and_stacks;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-14.
+ * Write a Queue implementation that uses a circular linked list, which is the same
+ * as a linked list except that no links are null and the value of last.next is first whenever
+ * the list is not empty. Keep only one Node instance variable (last).
  */
 public class Ex_1_3_29 {
 
@@ -23,7 +25,7 @@ public class Ex_1_3_29 {
         private final CircularLinkedList<E> circularList;
 
         public Queue() {
-            circularList = new CircularLinkedList<E>();
+            circularList = new CircularLinkedList<>();
         }
 
         public void enqueue(E item) {

@@ -3,7 +3,9 @@ package fundamentals.analysis_of_algorithms;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-18.
+ * Write a program that, given two sorted arrays of N int values, prints all elements
+ * that appear in both arrays, in sorted order. The running time of your program
+ * should be proportional to N in the worst case.
  */
 public class Ex_1_4_12 {
 

@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by patriknygren on 2017-04-09.
+ * Write a filter InfixToPostfix that converts an arithmetic expression from infix
+ * to postfix.
  */
 public class Ex_1_3_10 {
     private static final List<Character> operators = Arrays.asList('+', '-', '*', '/');

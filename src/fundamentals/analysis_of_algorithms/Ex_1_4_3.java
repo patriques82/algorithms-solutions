@@ -12,7 +12,9 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 /**
- * Created by patriknygren on 2017-04-16.
+ * Modify DoublingTest to use StdDraw to produce plots like the standard and
+ * log-log plots in the text, rescaling as necessary so that the plot always fills a substantial
+ * portion of the window.
  */
 public class Ex_1_4_3 {
 

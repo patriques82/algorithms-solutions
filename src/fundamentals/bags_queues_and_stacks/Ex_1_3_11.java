@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by patriknygren on 2017-04-09.
+ * Write a program EvaluatePostfix that takes a postfix expression from standard
+ * input, evaluates it, and prints the value. (Piping the output of your program from
+ * the previous exercise to this program gives equivalent behavior to Evaluate.
  */
 public class Ex_1_3_11 {
     private static final List<Character> operators = Arrays.asList('+', '-', '*', '/');

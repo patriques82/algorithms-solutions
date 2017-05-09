@@ -7,7 +7,9 @@ import java.util.Comparator;
 import java.util.function.Function;
 
 /**
- * Created by patriknygren on 2017-04-18.
+ * Write a program to determine the number pairs of values in an input file that
+ * are equal. If your first try is quadratic, think again and use Arrays.sort() to develop
+ a linearithmic solution.
  */
 public class Ex_1_4_8 {
 

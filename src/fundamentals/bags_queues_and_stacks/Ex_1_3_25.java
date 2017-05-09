@@ -3,7 +3,8 @@ package fundamentals.bags_queues_and_stacks;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-11.
+ * Write a method insertAfter() that takes two linked-list Node arguments and
+ * inserts the second after the first on its list (and does nothing if either argument is null).
  */
 public class Ex_1_3_25 {
 

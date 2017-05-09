@@ -2,6 +2,10 @@ package fundamentals.bags_queues_and_stacks;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Write a function that takes the first Node in a linked list as argument and (destructively)
+ * reverses the list, returning the first Node in the result.
+ */
 public class Ex_1_3_30 {
 
     public static void main(String[] args) {

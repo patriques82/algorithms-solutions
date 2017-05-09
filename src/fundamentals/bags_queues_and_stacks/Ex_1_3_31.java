@@ -3,7 +3,12 @@ package fundamentals.bags_queues_and_stacks;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by patriknygren on 2017-04-14.
+ * Implement a nested class DoubleNode for building doubly-linked lists, where
+ * each node contains a reference to the item preceding it and the item following it in the
+ * list (null if there is no such item). Then implement static methods for the following
+ * tasks: insert at the beginning, insert at the end, remove from the beginning, remove
+ * from the end, insert before a given node, insert after a given node, and remove a given
+ * node.
  */
 public class Ex_1_3_31 {
 

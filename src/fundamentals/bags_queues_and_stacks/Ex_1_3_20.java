@@ -4,7 +4,8 @@ import edu.princeton.cs.algs4.StdOut;
 
 
 /**
- * Created by patriknygren on 2017-04-09.
+ * Write a method delete() that takes an int argument k and deletes the kth element
+ * in a linked list, if it exists.
  */
 public class Ex_1_3_20 {
 
