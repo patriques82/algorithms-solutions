@@ -1,10 +1,6 @@
 package fundamentals.union_find;
 
-/**
- * Created by patriknygren on 2017-04-22.
- */
 // API
-
 interface UF {
 
     void union(int p, int q);           // add connection between p and q

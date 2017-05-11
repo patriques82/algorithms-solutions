@@ -1,8 +1,5 @@
 package fundamentals.bags_queues_and_stacks;
 
-/**
- * Created by patriknygren on 2017-04-09.
- */
 public class LinkedList<E> {
 
     public Node<E> first, last;

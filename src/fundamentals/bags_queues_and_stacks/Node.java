@@ -1,8 +1,5 @@
 package fundamentals.bags_queues_and_stacks;
 
-/**
- * Created by patriknygren on 2017-04-14.
- */
 public class Node<E> {
     public final E elem;
     public Node<E> next;
