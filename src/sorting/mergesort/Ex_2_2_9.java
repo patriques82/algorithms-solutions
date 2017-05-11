@@ -21,29 +21,28 @@ public class Ex_2_2_9 {
     public static class Merge {
         // private static Comparable[] aux;
 
-        public static void sort(Comparable[] a) {
-            Comparable[] aux = new Comparable[a.length];
-            sort(a, 0, a.length - 1, aux);
+        public static void sort(Comparable[] arr) {
+            Comparable[] aux = new Comparable[arr.length];
+            sort(arr, 0, arr.length - 1, aux);
         }
 
-        private static void sort(Comparable[] a, int lo, int hi, Comparable[] aux) {
+        private static void sort(Comparable[] arr, int lo, int hi, Comparable[] aux) {
             if (hi <= lo) return;
             int mid = lo + (hi - lo)/2;
-            sort(a, lo, mid, aux);
-            sort(a, mid+1, hi, aux);
-            merge(a, lo, mid, hi, aux);
+            sort(arr, lo, mid, aux);
+            sort(arr, mid+1, hi, aux);
+            merge(arr, lo, mid, hi, aux);
         }
 
-        private static void merge(Comparable[] a, int lo, int mid, int hi, Comparable[] aux) {
-            for (int k = lo; k <= hi; k++)
-                aux[k] = a[k];
-            int i = lo;
+        private static void merge(Comparable[] arr, int start, int mid, int end, Comparable[] aux) {
+            System.arraycopy(arr, start, aux, start, end - start + 1);
+            int i = start;
             int j = mid+1;
-            for (int k = lo; k <= hi; k++) {
-                if (i > mid)                    a[k] = aux[j++];
-                else if (j > hi)                a[k] = aux[i++];
-                else if (less(aux[i], aux[j]))  a[k] = aux[i++];
-                else                            a[k] = aux[j++];
+            for (int k = start; k <= end; k++) {
+                if (i > mid)                    arr[k] = aux[j++];
+                else if (j > end)                arr[k] = aux[i++];
+                else if (less(aux[i], aux[j]))  arr[k] = aux[i++];
+                else                            arr[k] = aux[j++];
             }
         }
 
