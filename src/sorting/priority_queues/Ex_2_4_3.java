@@ -68,6 +68,9 @@ public class Ex_2_4_3 {
             super(max);
         }
 
+        /**
+         * O(n)
+         */
         void insert(Key k) {
               if (!isFull()) {
                 Node<Key> newNode = new Node<>(k);
@@ -100,6 +103,9 @@ public class Ex_2_4_3 {
             }
         }
 
+        /**
+         * O(n)
+         */
         Key removeMax() {
             if (isEmpty()) {
                 return null;
@@ -127,6 +133,9 @@ public class Ex_2_4_3 {
             super(max);
         }
 
+        /**
+         * O(1)
+         */
         void insert(Key key) {
             if (!isFull()) {
                 list.add(key);
@@ -134,6 +143,9 @@ public class Ex_2_4_3 {
             }
         }
 
+        /**
+         * O(n)
+         */
         Key removeMax() {
             if (list.isEmpty()) {
                 return null;
@@ -200,12 +212,18 @@ public class Ex_2_4_3 {
             super(max);
         }
 
+        /**
+         * O(1)
+         */
         void insert(Key key) {
             if (!isFull()) {
                 pq[count++] = key;
             }
         }
 
+        /**
+         * O(n)
+         */
         Key removeMax() {
             Key max = null;
             if (!isEmpty()) {
@@ -252,6 +270,9 @@ public class Ex_2_4_3 {
             super(max);
         }
 
+        /**
+         * O(n)
+         */
         void insert(Key k) {
             if (!isFull()) {
                 int i = count;
@@ -264,6 +285,9 @@ public class Ex_2_4_3 {
             }
         }
 
+        /**
+         * O(1)
+         */
         Key removeMax() {
             if (isEmpty()) {
                 return null;
