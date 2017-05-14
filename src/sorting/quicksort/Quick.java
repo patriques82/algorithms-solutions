@@ -14,7 +14,7 @@ public class Quick {
         Arrays.stream(array).forEach(x -> StdOut.print(x + " "));
     }
 
-    static void sort(Comparable[] arr) {
+    public static void sort(Comparable[] arr) {
         aux = new Comparable[arr.length];
         System.arraycopy(arr, 0, aux, 0, aux.length);
         sort(arr, 0, arr.length-1);
