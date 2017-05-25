@@ -8,20 +8,20 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
     private Node root;
 
     public static void main(String[] args) {
-        TwoThreeBST<Integer, Character> bst = new TwoThreeBST<>();
-        bst.insert(0, 'S');
-        bst.insert(1, 'E');
-        bst.insert(2, 'A');
-        bst.insert(3, 'R');
-        bst.insert(4, 'C');
-        bst.insert(5, 'H');
-        bst.insert(6, 'X');
-        bst.insert(7, 'M');
-        bst.insert(8, 'P');
-        bst.insert(9, 'L');
+        TwoThreeBST<Character, Integer> bst = new TwoThreeBST<>();
+        bst.insert('S', 0);
+        bst.insert('E', 1);
+        bst.insert('A', 2);
+        bst.insert('R', 3);
+        bst.insert('C', 4);
+        bst.insert('H', 5);
+        bst.insert('X', 6);
+        bst.insert('M', 7);
+        bst.insert('P', 8);
+        bst.insert('L', 9);
         bst.print();
-        bst.search(5).ifPresent(StdOut::println); // H
-        bst.search(4).ifPresent(StdOut::println); // C
+        bst.search('H').ifPresent(StdOut::println); // 5
+        bst.search('C').ifPresent(StdOut::println); // 4
     }
 
     public Optional<V> search(K key) {
@@ -31,7 +31,9 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
 
     public void insert(K key, V val) {
         if (root != null) {
-            root.merge(root.insert(key, val));
+            Node n = root.insert(key, val);
+            if (n != null)
+                root = n;
         } else {
             root = new Node(key, val);
         }
@@ -50,23 +52,19 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
         private List<Node> links;
 
         private Node(KeyValue kv) {
-            kvs = new ArrayList<>();
+            kvs = new LinkedList<>();
             kvs.add(kv);
-            links = new ArrayList<>();
+            links = new LinkedList<>();
         }
 
         private Node(K k, V v) {
             this(new KeyValue(k, v));
         }
 
-        private Node(KeyValue kv, Node link) {
-            this(kv);
-            if (link != null)
-                links.add(link);
-        }
-
         private Node(KeyValue kv, Node left, Node right) {
-            this(kv, left);
+            this(kv);
+            if (left != null)
+                links.add(left);
             if (right != null)
                 links.add(right);
         }
@@ -123,12 +121,12 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
                     else
                         kvs.get(1).value = val;
                 } else {
-                    addKeyValue(new KeyValue(key, val));
+                    insertInto(RIGHT, key, val);
                 }
             } else {
                 kvs.get(0).value = val;
             }
-            if (kvs.size() > 2) {
+            if (isThreeNode()) {
                 Node left = new Node(kvs.get(0), getLink(LEFT), getLink(MIDDLE));
                 Node right = new Node(kvs.get(2), getLink(RIGHT), getLink(TEMP));
                 return new Node(kvs.get(1), left, right);
@@ -138,16 +136,42 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
 
         private void insertInto(int pos, K key, V val) {
             Node n = getLink(pos);
-            if (n != null)
-                n.merge(n.insert(key, val));
-            else
+            if (n != null) {
+                Node newNode = n.insert(key, val);
+                if (newNode != null) {
+                    removeLink(pos);
+                    merge(newNode);
+                }
+            } else {
                 addKeyValue(new KeyValue(key, val));
+            }
+        }
+
+        private void removeLink(int pos) {
+            if (pos == LEFT && !links.isEmpty())
+                links.remove(LEFT);
+            else if (pos == MIDDLE && links.size() == 3)
+                links.remove(MIDDLE);
+            else if (pos == RIGHT && links.size() == 2)
+                links.remove(1);
+            else if (pos == RIGHT && links.size() > 2)
+                links.remove(RIGHT);
+        }
+
+        private boolean isThreeNode() {
+            return kvs.size() > 2;
         }
 
         private void merge(Node node) {
             if (node != null) {
-                kvs = node.kvs;
-                links = node.links;
+                HashSet<KeyValue> keyValSet = new HashSet<>(kvs);
+                keyValSet.addAll(node.kvs);
+                kvs = new LinkedList<>(keyValSet);
+
+                HashSet<Node> nodeSet = new HashSet<>(links);
+                nodeSet.addAll(node.links);
+                links = new LinkedList<>(nodeSet);
+
                 sortKvs();
                 sortNodes();
             }
@@ -161,13 +185,13 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
         private Node getLink(int pos) {
             if (pos == LEFT && !links.isEmpty())
                 return links.get(LEFT);
-            else if (pos == MIDDLE && links.size() == 3)
+            else if (pos == MIDDLE && links.size() > 2)
                 return links.get(MIDDLE);
             else if (pos == RIGHT && links.size() == 2)
                 return links.get(1);
-            else if (pos == RIGHT && links.size() == 3)
+            else if (pos == RIGHT && links.size() > 2)
                 return links.get(RIGHT);
-            else if (pos == TEMP && links.size() == 4)
+            else if (pos == TEMP && links.size() > 3)
                 return links.get(TEMP);
             else
                 return null;
@@ -196,10 +220,23 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
             if (kvs.size() > 1)
                 kvs.sort(Comparator.comparing(o -> o.key));
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node node = (Node) o;
+            return kvs.equals(node.kvs);
+        }
+
+        @Override
+        public int hashCode() {
+            return kvs.hashCode();
+        }
     }
 
     private class KeyValue {
-        private K key;
+        private final K key;
         private V value;
 
         private KeyValue(K k, V v) {
@@ -209,7 +246,20 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
 
         @Override
         public String toString() {
-            return value.toString();
+            return key.toString();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            KeyValue keyValue = (KeyValue) o;
+            return key.equals(keyValue.key);
+        }
+
+        @Override
+        public int hashCode() {
+            return key.hashCode();
         }
     }
 }
