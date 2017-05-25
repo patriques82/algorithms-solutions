@@ -9,19 +9,17 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
 
     public static void main(String[] args) {
         TwoThreeBST<Character, Integer> bst = new TwoThreeBST<>();
-        bst.insert('S', 0);
-        bst.insert('E', 1);
-        bst.insert('A', 2);
-        bst.insert('R', 3);
-        bst.insert('C', 4);
-        bst.insert('H', 5);
-        bst.insert('X', 6);
-        bst.insert('M', 7);
-        bst.insert('P', 8);
-        bst.insert('L', 9);
+        bst.put('A', 0);
+        bst.put('C', 1);
+        bst.put('E', 2);
+        bst.put('H', 3);
+        bst.put('L', 4);
+        bst.put('M', 5);
+        bst.put('P', 6);
+        bst.put('R', 7);
+        bst.put('S', 8);
+        bst.put('X', 9);
         bst.print();
-        bst.search('H').ifPresent(StdOut::println); // 5
-        bst.search('C').ifPresent(StdOut::println); // 4
     }
 
     public Optional<V> search(K key) {
@@ -29,9 +27,9 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
                 .flatMap(n -> n.get(key));
     }
 
-    public void insert(K key, V val) {
+    public void put(K key, V val) {
         if (root != null) {
-            Node n = root.insert(key, val);
+            Node n = root.put(key, val);
             if (n != null)
                 root = n;
         } else {
@@ -107,21 +105,21 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
                 return Optional.empty();
         }
 
-        private Node insert(K key, V val) {
+        private Node put(K key, V val) {
             int cmp1 = key.compareTo(kvs.get(0).key);
             if (cmp1 < 0) {
-                insertInto(LEFT, key, val);
+                putInto(LEFT, key, val);
             } else if (cmp1 > 0) {
                 if (kvs.size() == 2) {
                     int cmp2 = key.compareTo(kvs.get(1).key);
                     if (cmp2 < 0)
-                        insertInto(MIDDLE, key, val);
+                        putInto(MIDDLE, key, val);
                     else if (cmp2 > 0)
-                        insertInto(RIGHT, key, val);
+                        putInto(RIGHT, key, val);
                     else
                         kvs.get(1).value = val;
                 } else {
-                    insertInto(RIGHT, key, val);
+                    putInto(RIGHT, key, val);
                 }
             } else {
                 kvs.get(0).value = val;
@@ -134,10 +132,10 @@ public class TwoThreeBST<K extends Comparable<K>, V> {
             return null;
         }
 
-        private void insertInto(int pos, K key, V val) {
+        private void putInto(int pos, K key, V val) {
             Node n = getLink(pos);
             if (n != null) {
-                Node newNode = n.insert(key, val);
+                Node newNode = n.put(key, val);
                 if (newNode != null) {
                     removeLink(pos);
                     merge(newNode);
